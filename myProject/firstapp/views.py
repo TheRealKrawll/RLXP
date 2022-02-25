@@ -2,9 +2,4 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def index(request):
-    return HttpResponse("CINS465 Hello World")
-<<<<<<< HEAD
- 
-=======
-
->>>>>>> assignment2
+    return HttpResponse("duff")

@@ -17,7 +17,10 @@ from django.conf.urls import include
 from django.contrib import admin
 from django.urls import path
 
+from buttons.views import path
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('firstapp.urls')),
+    path('', include('firstapp.urls')),  #adding urls from a file
+    path('home/', views.home_view, name='home'),  #adding a single url
 ]
