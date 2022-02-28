@@ -11,6 +11,6 @@ def index(request):
 
     }
     
-    return render(request, "index.html", my_context)
+    return render(request, "landing.html", my_context)
 
 
