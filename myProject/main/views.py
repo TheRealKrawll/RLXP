@@ -6,4 +6,4 @@ def base(request):
         "hello_world": "CINS465 Hello World"
     }
     
-    return render(request, "landing.html", my_context)
+    return render(request, "main/landing.html", my_context)
