@@ -17,11 +17,8 @@ from django.conf.urls import include
 from django.contrib import admin
 from django.urls import path
 
-from buttons.views import home_view, contact_view
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('firstapp.urls')),  #adding urls from a file
-    path('home/', home_view),  #adding a single url
-    path('contact/', contact_view),
+    #path('', include('firstapp.urls')),  #adding urls from a file
+    path('', include('main.urls')),
 ]
