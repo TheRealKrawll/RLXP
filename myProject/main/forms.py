@@ -1,9 +1,8 @@
-from multiprocessing.context import DefaultContext
 from django import forms
+from .models import Duck
 
-class NameForm(forms.Form):
-    first_name = forms.CharField(max_length=20)
-    last_name = forms.CharField(max_length=20, )
-    email = forms.EmailField(widget=forms.EmailInput)
-    date = forms.DateField(widget=forms.SelectDateWidget)
-    file = forms.ImageField(label="Enter an image")
+class DuckForm(forms.ModelForm):
+    class Meta:
+        model = Duck
+        fields = '__all__'
+

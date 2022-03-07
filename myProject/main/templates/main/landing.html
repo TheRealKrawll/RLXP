@@ -2,9 +2,24 @@
 
 <!--Start of a block content-->
 {% block content %}
-<h3 class="center">Give this duck a name!</h3>
+<h3 class="text-center">List of famous ducks!</h3>
 {% comment%} Do we need the redirect? {% endcomment%}
-<form action="/your-name/" method="post">
+
+<!--list all the ducks-->
+<ul class="no-bullet text-center">
+    {% if ducks|length != 0 %}
+        {% for duck in ducks %}
+        <li>There is a {{ duck.color|lower }} duck named {{ duck.name}} from {{duck.media}}</li>
+        {% endfor %}
+    {% else %}
+        <p>There are no ducks in the list!!!</p>
+    {% endif %}
+</ul>
+
+<br>
+
+<h3 class="text-center">**Add a famous duck to the list**</h3>
+<form action="" method="post">
     {% csrf_token %}
     {{ name_form }}
     <input type="submit" value="Submit">

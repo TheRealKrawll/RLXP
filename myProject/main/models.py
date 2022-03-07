@@ -2,8 +2,17 @@ from django.db import models
 
 class Duck(models.Model):
     #need some attributes
-    d_name = models.CharField(max_length=40)
-    #d_image = models.ImageField()
-    d_img_url = models.CharField(max_length=150, default="https://media.istockphoto.com/photos/mallard-duck-on-white-background-picture-id464988959")
+    name = models.CharField(max_length=40)
+    color = models.CharField(max_length=40)
+    media = models.CharField(max_length=40, null=True)
 
-    
+    #to show in admin page
+    def __str__(self):
+        return self.name
+        
+
+class Chicken(models.Model):
+    name = models.CharField(max_length=40)
+
+    def __str__(self):
+        return self.name
