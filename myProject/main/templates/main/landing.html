@@ -19,11 +19,21 @@
 <br>
 
 <h3 class="text-center">**Add a famous duck to the list**</h3>
-<form action="" method="post">
+<form method="post">
     {% csrf_token %}
     {{ name_form }}
     <input type="submit" value="Submit">
 </form>
+
+<br><hr><br>
+
+<h1> From Tutorial </h1>
+{% for room in rooms %}
+
+    <h5> {{room.id}} -- <a href="{% url 'room' room.id%}">{{room.name}}</a><h5>
+
+{% endfor %}
+
 
 {% endblock %}
 <!--End of block content-->

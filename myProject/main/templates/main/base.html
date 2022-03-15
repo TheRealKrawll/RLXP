@@ -10,15 +10,30 @@
         <link rel="stylesheet" href="{% static 'css/app.css' %}">
     </head>
 
-    <body>
+    <body onload=displayCurrentTime()>
         {% include 'main/navbar.html' %}
+
+        <hr>
+        
+
+        <h3 class="text-center">The time below uses javascript to update!!!</h3>
+        <h4 class="text-center" id='date' style="color:green;"></h4>
+        <p id="randomResult"></p>
+        <button type="button" class="button" onclick=myRandomNum()>This button uses Javascript!!</button>
+        <hr>
+        
+        <h1>Block Content</h1>
         {% block content %}
         replace me!!
-        {% endblock %}
+        {% endblock content %}
+
+
+        
 
         <script src="{% static 'js/vendor/jquery.js' %}"></script>
         <script src="{% static 'js/vendor/what-input.js' %}"></script>
         <script src="{% static 'js/vendor/foundation.js' %}"></script>
         <script src="{% static 'js/app.js' %}"></script>
+
     </body>
 </html>

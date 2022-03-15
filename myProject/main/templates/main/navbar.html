@@ -1,19 +1,17 @@
 {% load static %}
-<h1>This is a duck</h1>
+<h1><a href="{% url 'base' %}">Navigation Bar</a></h1>
 <div class="grid-container fluid">
     <div class="grid-x grid-margin-x">
-        <div class="cell auto">
-            <form action="http://en.wikipedia.org/wiki/duck">
-                <input class="button alert expanded" type="submit" value="More Ducks!">
-            </form>
-        </div>
-        <div class="cell auto">
-            <form action="https://www.ducks.org/conservation/waterfowl-research-science/for-goodness-sake-where-are-all-the-ducks">
-                <input class="button alert expanded" type="submit" value="Less Ducks!">
-            </form>
-        </div>
+        {% for duck in ducks %}
+            <div class="cell auto">
+                <form action="{% url 'duck' duck.name%}">
+                    <input class="button alert expanded" type="submit" value="{{duck.name}}">
+                </form>
+            </div>
+        {% endfor %}
     </div>
 </div>
-<!--GOT IT TO CENTER!!-->
-<img src="{% static 'assets/duck.jpg' %}" alt="Just a Duck" class="float-center" width="250" height="auto">
 
+<!--GOT IT TO CENTER!!
+<img src="{% static 'assets/duck.jpg' %}" alt="Just a Duck" class="float-center" width="250" height="auto">
+-->
