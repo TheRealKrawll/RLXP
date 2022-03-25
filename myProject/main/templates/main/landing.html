@@ -25,16 +25,8 @@
     <input type="submit" value="Submit">
 </form>
 
-<br><hr><br>
-
-<h1> From Tutorial </h1>
-{% for room in rooms %}
-    <span>@{{room.host.username}}</span>
-    <h5> {{room.id}} -- <a href="{% url 'room' room.name%}">{{room.name}}</a></h5>
-    <hr>
-    <small>{{room.topic.name}}</small>
-{% endfor %}
-
-
 {% endblock %}
+
+
+
 <!--End of block content-->

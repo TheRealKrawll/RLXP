@@ -1,21 +1,14 @@
 from django.http import HttpResponseRedirect
 from django.views.generic import TemplateView
-from django.shortcuts import render
-from .models import Duck
-from .models import Room
-from .forms import DuckForm
+from django.db.models import Q
+from django.shortcuts import render, redirect
+from .models import Duck, Room, Topic
+from .forms import DuckForm, RoomForm
 
 #queryset = Modelname.objects.all()
 #.all() has many other methods (.get(), .filter(), .exclude(),...)
 ducks = Duck.objects.all()
-rooms = Room.objects.all()
-"""
-rooms = [
-    {'id': 1, 'name': 'room 1'},
-    {'id': 2, 'name': 'room 2'},
-    {'id': 3, 'name': 'room 3'},
-]
-"""
+
 
 # Create your views here.
 def base(request):
@@ -32,18 +25,9 @@ def base(request):
         "hello_world": "CINS465 Hello World",
         "name_form" : name_form,
         "ducks": ducks,
-        "rooms": rooms,
-
     }
     
     return render(request, "main/landing.html", my_context)
-
-
-def mainroom(request):
-    my_context = {
-        "rooms": rooms,
-    }
-    return render(request, 'main/room.html', my_context)
 
 
 def duck(request, pk):
@@ -59,9 +43,34 @@ def duck(request, pk):
 
 
 
+
+##### TUTORIAL VIEWS #####
+
+
+def mainroom(request):
+    #in line if statement
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+
+    #using double underscore is like saying topic.name
+    #icontains will find any topic that contains what is in q
+    # the i mean case insensitive
+    rooms = Room.objects.filter(
+        Q(topic__name__icontains=q) |
+        Q(name__icontains=q) |
+        Q(description__icontains=q)
+        )
+
+    topics = Topic.objects.all()
+    my_context = {
+        "rooms": rooms,
+        "topics": topics,
+    }
+    return render(request, 'main/mainroom.html', my_context)
+
+
 def room(request, pk):
     #this is much better than the iteration version
-    room = Room.objects.get(name=pk)
+    room = Room.objects.get(id=pk)
     """
     for rm in rooms:
         if rm.name == str(pk):
@@ -70,5 +79,44 @@ def room(request, pk):
 
     my_context = {"room": room}
     return render(request, 'main/room.html', my_context)
+
+def createRoom(request):
+    form = RoomForm()
+
+    if request.method == 'POST':
+        #print(request.POST)
+        form = RoomForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('mainroom')
+
+    my_context = {'form': form}
+    return render(request, 'main/room_form.html', my_context)
+
+
+def updateRoom(request, pk):
+    room = Room.objects.get(id=pk)
+    form = RoomForm(instance=room)
+
+    if request.method == 'POST':
+        form = RoomForm(request.POST, instance=room) #This confuses me!
+
+        if form.is_valid():
+            form.save()
+            #print("Worked")
+            return redirect('mainroom')
+            
+
+    my_context = {'form': form}
+    return render(request, 'main/room_form.html', my_context)
+
+
+def deleteRoom(request, pk):
+    room = Room.objects.get(id=pk)
+    if request.method == 'POST':
+        room.delete() #removes item from the database
+        return redirect('mainroom')
+    return render(request, 'main/delete.html', {'obj': room})
+
 
 

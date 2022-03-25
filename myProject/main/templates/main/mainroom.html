@@ -1,0 +1,40 @@
+{% extends 'main/base.html' %} {% block content%}
+
+<h1>From Tutorial</h1>
+
+<div class="grid-x grid-margin-x">
+  <div class="cell small-3">
+    <h3>Browse topics</h3>
+    <hr />
+    <form method="GET" action="{% url 'mainroom' %}">
+      <input type="text" name="q" placeholder="Search rooms" />
+    </form>
+    <div>
+      <a href="{% url 'mainroom' %}">ALL</a>
+    </div>
+
+    {% for topic in topics %}
+    <div>
+      <a href="{% url 'mainroom' %}?q={{topic.name}}">{{topic.name}}</a>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="cell small-9">
+    <a href="{% url 'create-room' %}">Create Room</a>
+    {% for room in rooms %}
+    <div>
+      <a href="{% url 'update-room' room.id %}">Edit</a>
+      <a href="{% url 'delete-room' room.id %}">Delete</a>
+      <span>@{{room.host.username}}</span>
+      <h5>
+        {{room.id}} -- <a href="{% url 'room' room.id%}">{{room.name}}</a>
+      </h5>
+      <small>topic -- {{room.topic.name}}</small>
+      <hr />
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock content %}

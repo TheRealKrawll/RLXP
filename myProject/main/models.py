@@ -44,6 +44,12 @@ class Room(models.Model):
     #auto_now_add=True takes a snamshow when a model is created
     created = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        # the '-' makes it reverse order.
+        # we are sorting by most update first
+        # then created
+        ordering = ['-updated', '-created']
+
     def __str__(self):
         return self.name
 
