@@ -1,0 +1,43 @@
+{% load static %}
+
+<div class="grid-x">
+
+  <div class="cell small-1">
+    <a href="{% url 'home' %}">
+      <img src="https://thumbs.dreamstime.com/b/web-182411544.jpg", alt="Profile Image", height="36" width="36" >
+    </a>
+  </div>
+
+  <div class="cell small-7">
+    <ul class="menu">
+      <li><a href="">Dashboard</a></li>
+      <li><a href="">Leaderboard</a></li>
+      <li><a href="">About</a></li>
+    </ul>
+  </div>
+
+  <div alight="right" class="cell small-3">
+    {% if loggedIn %}
+      <ul class="menu">
+        <li><a href="{% url 'profile' %}">{{ username }}</a></li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+      </ul>
+    {% else %}
+      <ul class="menu"><a href="{% url 'login' %}">Login</a></ul>
+    {% endif %}
+  </div>
+
+  <div align="right" class="cell small-1">
+    <a href="">
+      <img src="https://cdn.pixabay.com/photo/2016/08/31/11/54/user-1633249__340.png", alt="Profile Image", height="36" width="36" >
+    </a>
+  </div>
+
+</div>
+
+<hr style="
+  border: 0;
+  height: 1px; 
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+">
+
