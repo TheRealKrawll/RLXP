@@ -1,43 +1,49 @@
 {% load static %}
 
-<div class="grid-x">
 
-  <div class="cell small-1">
-    <a href="{% url 'home' %}">
+
+<div class="top-bar">
+    <li class="menu"><a href="{% url 'home' %}">
       <img src="https://thumbs.dreamstime.com/b/web-182411544.jpg", alt="Profile Image", height="36" width="36" >
-    </a>
-  </div>
-
-  <div class="cell small-7">
+    </a></li>
+  <div class="top-bar-left">
     <ul class="menu">
+      
+      <li class="menu-text">RLXP</li>
       <li><a href="">Dashboard</a></li>
       <li><a href="">Leaderboard</a></li>
       <li><a href="">About</a></li>
     </ul>
+
   </div>
 
-  <div alight="right" class="cell small-3">
-    {% if loggedIn %}
+  <div class="top-bar-right">
+    <ul class="menu">
+      {% if loggedIn %}
+        <ul class="vertical menu" >
+          <li>
+           <a href="{% url 'profile' %}">{{ username }}</a>
+           <!--<a href="{% url 'logout' %}">Logout</a>-->
+          </li>
+        </ul>
+      {% else %}
+        <li><a href="{% url 'login' %}">Login</a></li>
+      {% endif %}
+    </ul>
+  </div>
+  <ul class="dropdown menu shrink" data-dropdown-menu>
+    <li>
+      <a href="#"><img src="https://cdn.pixabay.com/photo/2016/08/31/11/54/user-1633249__340.png", alt="Profile Image", height="36" width="36" ></a>
+      {% if loggedIn %}
       <ul class="menu">
-        <li><a href="{% url 'profile' %}">{{ username }}</a></li>
-        <li><a href="{% url 'logout' %}">Logout</a></li>
+        <li><a href="{% url 'dashboard' %}" >Dashboard</a></li>
+        <li><a href="{% url 'profile' %}" >Profile</a></li>
+        <li><a href="{% url 'logout' %}" >Logout</a></li>
       </ul>
-    {% else %}
-      <ul class="menu"><a href="{% url 'login' %}">Login</a></ul>
-    {% endif %}
-  </div>
+      {% endif %}
+    </li>
 
-  <div align="right" class="cell small-1">
-    <a href="">
-      <img src="https://cdn.pixabay.com/photo/2016/08/31/11/54/user-1633249__340.png", alt="Profile Image", height="36" width="36" >
-    </a>
-  </div>
-
+  </ul>
 </div>
 
-<hr style="
-  border: 0;
-  height: 1px; 
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
-">
 

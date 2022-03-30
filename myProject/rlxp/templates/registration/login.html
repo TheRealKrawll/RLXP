@@ -1,12 +1,21 @@
 <!-- templates/registration/login.html -->
 {% extends 'rlxp/base.html' %}
-<h2>Log In</h2>
-{% block content %}
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit" class="button">Log In</button>
-</form>
 
-<a class="button" href="{% url 'register' %}">Create Account</a>
+{% block content %}
+<br><br>
+<div class="grid-x grid-margin-x">
+  <div class="cell auto"></div>
+  <div class="cell shrink">
+    <div class="card">
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="button">Log In</button>
+        <a class="button" href="{% url 'register' %}">Register</a>
+      </form>
+    </div>
+  </div>
+  <div class="cell auto"></div>
+</div>
+
 {% endblock  %}

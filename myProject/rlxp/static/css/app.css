@@ -1,21 +1,45 @@
 /* My app css stylesheet */
+:root{
+    --bg-body-color: #222;
+    --bg-nav-color: #111;
+    --text-color: #999;
+}
+
 h1 {
     font-size: 4em;
-    color: maroon;
+    color: var(--text-color);
     text-align: center;
     margin: 0.67em 0;
 }
 
 body {
-    background: #faebd7;
-    margin: 1em;
+    background-color: var(--bg-body-color);
 }
 
-#para1 {
-    text-align: center;
-    color: darkslateblue;
+.top-bar, .top-bar ul{
+    background: var(--bg-nav-color);
+    color: #999;
 }
 
-.mylist {
-    font-family: Georgia;
+a {
+    color: #86e7ff;
 }
+
+label {
+    color: var(--text-color);
+}
+
+.card {
+    background: var(--bg-nav-color);
+    border-radius: 10px;
+    width: 300px;
+    padding: 10px;
+}
+
+
+
+
+
+
+
+
