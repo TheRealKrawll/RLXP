@@ -29,11 +29,20 @@ label {
     color: var(--text-color);
 }
 
-.card {
+.card{
     background: var(--bg-nav-color);
     border-radius: 10px;
     width: 300px;
     padding: 10px;
+    color: var(--text-color);
+}
+
+.card-divider{
+    background: var(--bg-nav-color);
+}
+
+.form {
+    color: var(--text-color);
 }
 
 

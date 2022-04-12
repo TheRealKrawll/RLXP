@@ -1,1 +1,27 @@
+
 {% extends 'rlxp/base.html' %}
+
+{% block content %}
+<br>
+<div class="grid-x grid-margin-x">
+  <div class="cell auto"></div>
+  <div class="cell shrink">
+    <div class="card">
+      <div class="card-divider">
+        <p>{{ username }} -- <a href="{% url 'studentform' %}">update</a></p>
+      </div>
+      <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png">
+      <div class="card-section">
+        <p>Stats: </p>
+        <p>Level: 0</p>
+        <p>Experience: 110xp</p>
+        <p>Friends:</p>
+        {% for friend in friends%}
+        <p>{{ friend.name }} </p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="cell auto"></div>
+</div> <!-- End of grid-->
+{% endblock content %}
