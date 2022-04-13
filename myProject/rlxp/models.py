@@ -3,11 +3,11 @@ from django.contrib.auth.models import User
 
 class Student(models.Model):
   user = models.ForeignKey(User, on_delete=models.CASCADE)
-  fname = models.CharField(max_length=40)
+  fname = models.CharField(max_length=40, null=True, blank=True)
   lname = models.CharField(max_length=40, null=True, blank=True)
   age = models.IntegerField(null=True, blank=True)
   start_date = models.DateTimeField(auto_now_add=True)
-  grade_level = models.IntegerField(default=0)
+  grade_level = models.IntegerField(blank=True, null = True, default=0)
   xp = models.IntegerField(default=0)
   profile_pic = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=None, null=True, blank=True)
 

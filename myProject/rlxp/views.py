@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from .forms import StudentForm, ClassForm, AssignmentForm, ChoreForm
+from .models import Student
 
 # Create your views here.
 def home_view(request):
@@ -40,6 +41,10 @@ def register_view(request):
       raw_password = form.cleaned_data.get('password1')
       user = authenticate(username=username, password=raw_password)
       login(request, user)
+
+      #create Student object!!
+      student = Student(user=request.user)
+      student.save()
       return redirect('home')
   else:
     form = UserCreationForm()
@@ -47,15 +52,13 @@ def register_view(request):
 
 
 def studentform_view(request):
-  
+  form = StudentForm(instance=request.user)
   if request.method == "POST":
     form = StudentForm()
     if form.is_valid():
       form.save()
       return redirect('profile')
-  else:
-    form = StudentForm()
-    print("not valid")
+  
 
   context = {
     'form': form,
