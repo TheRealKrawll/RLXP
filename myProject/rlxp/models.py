@@ -11,12 +11,20 @@ class Student(models.Model):
   xp = models.IntegerField(default=0)
   profile_pic = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=None, null=True, blank=True)
 
+  def __str__(self):
+      return self.user.username
+  
+
 class Class(models.Model):
   student = models.ForeignKey(User, on_delete=models.CASCADE)
   name = models.CharField(max_length=50)
   subject = models.CharField(max_length=50)
   start_date = models.DateTimeField(auto_now_add=True)
   done_date = models.DateTimeField(auto_now=True)
+
+  def __str__(self):
+      return self.name
+  
 
 class Assignment(models.Model):
   _class = models.ForeignKey(Class, on_delete=models.CASCADE)
@@ -35,6 +43,10 @@ class Assignment(models.Model):
   done_date = models.DateTimeField(auto_now=True)
   due_date = models.DateTimeField(null=True, blank=True)
 
+  def __str__(self):
+      return self.name
+  
+
 class Chore(models.Model):
   user = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -51,6 +63,10 @@ class Chore(models.Model):
   start_date = models.DateTimeField(auto_now_add=True)
   done_date = models.DateTimeField(auto_now=True)
   due_date = models.DateTimeField(null=True, blank=True)
+
+  def __str__(self):
+      return self.name
+  
 
 
 

@@ -6,6 +6,7 @@ class StudentForm(forms.ModelForm):
         model = Student
         #fields = '__all__'
         fields = ['fname', 'lname', 'age', 'grade_level', 'profile_pic']
+        #fields = ['fname']
 
 class ClassForm(forms.ModelForm):
     class Meta:

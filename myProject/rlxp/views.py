@@ -52,13 +52,13 @@ def register_view(request):
 
 
 def studentform_view(request):
-  form = StudentForm(instance=request.user)
+  student = Student.objects.get(user=request.user)
+  form = StudentForm(instance=student)
   if request.method == "POST":
-    form = StudentForm()
+    form = StudentForm(request.POST, instance=student)
     if form.is_valid():
       form.save()
-      return redirect('profile')
-  
+      return redirect('profile')  
 
   context = {
     'form': form,
