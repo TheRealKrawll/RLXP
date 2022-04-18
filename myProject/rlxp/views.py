@@ -26,7 +26,8 @@ def profile_view(request):
 def dashboard_view(request):
   context = {
     "loggedIn": request.user.is_authenticated,
-    "username": request.user
+    "username": request.user,
+    "friends": {},
   }
   return render(request, 'rlxp/dashboard.html', context)
 

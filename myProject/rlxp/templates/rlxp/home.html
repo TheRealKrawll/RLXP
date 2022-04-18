@@ -2,11 +2,18 @@
 
 {% block content %}
 
-<!-- Home Page Todo List 
-
--->
-
 <h1>Real Life eXperience Points</h1>
+
+<!-- TO DO LIST -->
+<h4 style="color: lightblue">To do list:</h4>
+<ol style="color: #999">
+  <li>Create Dashboard HTML</li>
+  <li>Create a class</li>
+  <li>Create an assignment</li>
+  <li>Create a chore</li>
+  <li>Establish xp based on completed assignments/chore</li>
+  <li>Websockets in Djagno</li>
+</ol>
 
 {% if loggedIn %}
 <p style="text-align: center; background: #333; color: #999;">Check out your <a href="{% url 'dashboard' %}">dashboard</a> or <a href="{% url 'logout' %}">logout</a>.</p>

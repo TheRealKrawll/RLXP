@@ -32,7 +32,6 @@ label {
 .card{
     background: var(--bg-nav-color);
     border-radius: 10px;
-    width: 300px;
     padding: 10px;
     color: var(--text-color);
 }
@@ -43,6 +42,10 @@ label {
 
 .form {
     color: var(--text-color);
+}
+
+.dash span{
+    color: var(--text-color)
 }
 
 

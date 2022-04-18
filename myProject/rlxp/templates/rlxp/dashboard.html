@@ -1,1 +1,38 @@
+
 {% extends 'rlxp/base.html' %}
+
+{% block content %}
+<br>
+<div class="grid-container">
+  <div class="grid-y">
+    <span style="color: lightblue">{{ username }}</span>
+    <div class="cell">
+      <div class="card" style="width: 600px;">
+        <div class="grid-x grid-margin-x small-up-2 medium-up-4">
+          <div class="cell">Level</div>
+          <div class="cell">XP</div>
+          <div class="cell">part4</div>
+        </div>
+      </div>
+    </div>
+    <span style="color: lightblue">Assignments</span>
+    <div class="cell">
+      <div class="card" style="width: 600px;">
+        <p>Assignment name, class, due date</p>
+        <p>Assignment name, class, due date</p>
+        <p>Assignment name, class, due date</p>
+      </div>
+    </div>
+    <span style="color: lightblue">Chores</span>
+    <div class="cell">
+      <div class="card" style="width: 600px;">
+        <p>Chore name, type, due date</p>
+        <p>Chore name, type, due date</p>
+        <p>Chore name, type, due date</p>
+      </div>
+    </div>
+
+  </div> <!-- End of grid-->
+</div>
+
+{% endblock content %}
