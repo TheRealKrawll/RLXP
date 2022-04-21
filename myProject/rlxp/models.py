@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Student(models.Model):
-  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="students")
   fname = models.CharField(max_length=40, null=True, blank=True)
   lname = models.CharField(max_length=40, null=True, blank=True)
   age = models.IntegerField(null=True, blank=True)
@@ -15,7 +15,7 @@ class Student(models.Model):
       return self.user.username
   
 
-class Class(models.Model):
+""" class Class(models.Model):
   student = models.ForeignKey(User, on_delete=models.CASCADE)
   name = models.CharField(max_length=50)
   subject = models.CharField(max_length=50)
@@ -23,11 +23,12 @@ class Class(models.Model):
   done_date = models.DateTimeField(auto_now=True)
 
   def __str__(self):
-      return self.name
+      return self.name """
   
 
 class Assignment(models.Model):
-  _class = models.ForeignKey(Class, on_delete=models.CASCADE)
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  #_class = models.ForeignKey(Class, on_delete=models.CASCADE)
 
   class Difficulty(models.IntegerChoices):
     VERYEASY = 1

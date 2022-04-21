@@ -1,5 +1,5 @@
 from django import forms
-from .models import Student, Class, Assignment, Chore
+from .models import Student, Assignment, Chore
 
 class StudentForm(forms.ModelForm):
     class Meta:
@@ -8,11 +8,11 @@ class StudentForm(forms.ModelForm):
         fields = ['fname', 'lname', 'age', 'grade_level', 'profile_pic']
         #fields = ['fname']
 
-class ClassForm(forms.ModelForm):
+""" class ClassForm(forms.ModelForm):
     class Meta:
         model = Class
         #fields = '__all__'
-        fields = ['name', 'subject']
+        fields = ['name', 'subject'] """
 
 class AssignmentForm(forms.ModelForm):
     class Meta:

@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
-from .forms import StudentForm, ClassForm, AssignmentForm, ChoreForm
-from .models import Student
+from .forms import StudentForm, AssignmentForm, ChoreForm
+from .models import Student, Assignment, Chore
 
 # Create your views here.
 def home_view(request):
@@ -24,10 +24,14 @@ def profile_view(request):
 
 #dashboard page
 def dashboard_view(request):
+  assignments = Assignment.objects.filter(user=request.user)
+  chores = Chore.objects.filter(user=request.user)
   context = {
     "loggedIn": request.user.is_authenticated,
     "username": request.user,
     "friends": {},
+    "assignments": assignments,
+    "chores": chores,
   }
   return render(request, 'rlxp/dashboard.html', context)
 

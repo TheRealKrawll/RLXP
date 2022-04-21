@@ -18,17 +18,21 @@
     <span style="color: lightblue">Assignments</span>
     <div class="cell">
       <div class="card" style="width: 600px;">
-        <p>Assignment name, class, due date</p>
-        <p>Assignment name, class, due date</p>
-        <p>Assignment name, class, due date</p>
+        {% if assignments|length != 0 %}
+          {% for assignment in assignments %}
+            <p>{{assignment.name}}</p>
+          {% endfor %}
+        {% endif %}
       </div>
     </div>
     <span style="color: lightblue">Chores</span>
     <div class="cell">
       <div class="card" style="width: 600px;">
-        <p>Chore name, type, due date</p>
-        <p>Chore name, type, due date</p>
-        <p>Chore name, type, due date</p>
+        {% if chores|length != 0 %}
+          {% for chore in chores %}
+            <p>{{chore.name}}</p>
+          {% endfor %}
+        {% endif %}
       </div>
     </div>
 
