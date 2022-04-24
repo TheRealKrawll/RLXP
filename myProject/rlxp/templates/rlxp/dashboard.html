@@ -2,6 +2,7 @@
 {% extends 'rlxp/base.html' %}
 
 {% block content %}
+
 <br>
 <div class="grid-container">
   <div class="grid-y">
@@ -15,17 +16,21 @@
         </div>
       </div>
     </div>
-    <span style="color: lightblue">Assignments</span>
+    <span style="color: lightblue">
+      Assignments [ <a href="#" onclick="overlayAssignmentForm(); return false">+</a> ]
+      </span>
     <div class="cell">
       <div class="card" style="width: 600px;">
-        {% if assignments|length != 0 %}
-          {% for assignment in assignments %}
-            <p>{{assignment.name}}</p>
-          {% endfor %}
-        {% endif %}
+      {% if assignments|length != 0 %}
+        {% for assignment in assignments %}
+          <p>{{assignment.name}}</p>
+        {% endfor %}
+      {% endif %}
       </div>
     </div>
-    <span style="color: lightblue">Chores</span>
+    <span style="color: lightblue">
+      Chores [ <a href="#" onclick="overlayChoreForm(); return false">+</a> ]
+      </span>
     <div class="cell">
       <div class="card" style="width: 600px;">
         {% if chores|length != 0 %}
@@ -38,5 +43,27 @@
 
   </div> <!-- End of grid-->
 </div>
+
+
+<div id="overlayAssignmentForm">
+  <div class="card" style="width: 600px;">
+    <form method="post" action="">
+      {% csrf_token %}
+      {{ assignmentForm }}
+      <button type="submit" class="button">Submit</button>
+    </form>
+  </div>
+<div id="overlayChoreForm">
+  <div class="card" style="width: 600px;">
+    <form method="post" action="">
+      {% csrf_token %}
+      {{ choreForm }}
+      <button type="submit" class="button">Submit</button>
+    </form>
+  </div>
+</div>
+
+
+
 
 {% endblock content %}

@@ -24,6 +24,24 @@ def profile_view(request):
 
 #dashboard page
 def dashboard_view(request):
+  chore = Chore(user=request.user)
+  assignment = Assignment(user=request.user)
+  choreForm = ChoreForm()
+  assignmentForm = AssignmentForm()
+  if request.method == "POST":
+    #print("trying to post")
+    if 'recurring' in request.POST:
+      #print("chore")
+      choreForm = ChoreForm(request.POST, instance=chore)
+      if choreForm.is_valid():
+        choreForm.save()
+    else:
+      #print("recurring")
+      assignmentForm = AssignmentForm(request.POST, instance=assignment)
+      if assignmentForm.is_valid():
+        assignmentForm.save()
+    
+
   assignments = Assignment.objects.filter(user=request.user)
   chores = Chore.objects.filter(user=request.user)
   context = {
@@ -32,6 +50,8 @@ def dashboard_view(request):
     "friends": {},
     "assignments": assignments,
     "chores": chores,
+    "choreForm": choreForm,
+    "assignmentForm": assignmentForm
   }
   return render(request, 'rlxp/dashboard.html', context)
 
