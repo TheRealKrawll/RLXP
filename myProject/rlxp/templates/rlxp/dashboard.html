@@ -4,57 +4,82 @@
 {% block content %}
 
 <br>
-<div class="grid-container">
-  <div class="grid-y">
-    <span style="color: lightblue">{{ username }}</span>
-    <div class="cell">
-      <div class="card" style="width: 600px;">
-        <div class="grid-x grid-margin-x small-up-2 medium-up-4">
-          <div class="cell">Level</div>
-          <div class="cell">XP</div>
-          <div class="cell">part4</div>
+<div class="grid-x grid-margin-x">
+  <div class="cell auto"></div>
+  <div class="cell shrink">
+    <div class="grid-y">
+      <span style="color: lightblue">{{student.fname}} {{student.lname}} ({{ username }})</span>
+      <div class="cell">
+        <div class="card" style="width: 600px;">
+          <div class="grid-x grid-margin-x small-up-2 medium-up-4">
+            <div class="cell auto">Level</div>
+            <div class="cell auto">XP</div>
+            <div class="cell auto">Assignments: {{assignments|length}}</div>
+            <div class="cell auto">Chores: {{chores|length}}</div>
+          </div>
         </div>
       </div>
-    </div>
-    <span style="color: lightblue">
-      Assignments [ <a href="#" onclick="overlayAssignmentForm(); return false">+</a> ]
+      <span style="color: lightblue">
+        Assignments [ <a href="#" onclick="overlayAssignmentForm(); return false">add</a> ]
       </span>
-    <div class="cell">
-      <div class="card" style="width: 600px;">
-      {% if assignments|length != 0 %}
+      <div class="cell">
+        {% if assignments|length != 0 %}
         {% for assignment in assignments %}
-          <p>{{assignment.name}}</p>
+          <div class="card" style="width: 600px;">
+            <div class="grid-x grid-padding-x">
+              <div class="cell auto">{{assignment.name}}</div>
+              <div class="cell auto">Difficulty: {{assignment.difficulty}}</div>
+              <div class="cell auto">Due: {{assignment.due_date}}</div>
+              <div style="text-align: right;" class="cell auto">[ <a href="{% url 'delete-assignment' assignment.id %}">remove</a> ]</div>
+            </div>
+          </div>
         {% endfor %}
-      {% endif %}
+        {% else %}
+        <div class="card" style="width: 600px;">
+          <p>You have no assignments.</p>
+        </div>
+        {% endif %}
       </div>
-    </div>
-    <span style="color: lightblue">
-      Chores [ <a href="#" onclick="overlayChoreForm(); return false">+</a> ]
+      <span style="color: lightblue">
+        Chores [ <a href="#" onclick="overlayChoreForm(); return false">add</a> ]
       </span>
-    <div class="cell">
-      <div class="card" style="width: 600px;">
+      <div class="cell">
         {% if chores|length != 0 %}
-          {% for chore in chores %}
-            <p>{{chore.name}}</p>
-          {% endfor %}
+        {% for chore in chores %}
+          <div class="card" style="width: 600px;">
+            <div class="grid-x grid-padding-x">
+              <div class="cell auto">{{chore.name}}</div>
+              <div class="cell auto">Difficulty: {{chore.difficulty}}</div>
+              <div class="cell auto">Due: {{chore.due_date}}</div>
+              <div style="text-align: right;" class="cell auto">[ <a href="{% url 'delete-chore' chore.id %}">remove</a> ]</div>
+            </div>
+          </div>
+        {% endfor %}
+        {% else %}
+        <div class="card" style="width: 600px;">
+          <p>You have no chores.</p>
+        </div>
         {% endif %}
       </div>
     </div>
-
-  </div> <!-- End of grid-->
-</div>
+  </div>
+  <div class="cell auto"></div>
+</div><!-- End of grid-->
 
 
 <div id="overlayAssignmentForm">
-  <div class="card" style="width: 600px;">
+  <div class="card" style="width: 400px;">
+    <a style="color: red; text-align: right;" href="#" onclick="overlayAssignmentForm(); return false">X</a> 
     <form method="post" action="">
       {% csrf_token %}
       {{ assignmentForm }}
       <button type="submit" class="button">Submit</button>
     </form>
   </div>
+</div>
 <div id="overlayChoreForm">
-  <div class="card" style="width: 600px;">
+  <div class="card" style="width: 400px;">
+    <a style="color: red; text-align: right" href="#" onclick="overlayChoreForm(); return false">X</a> 
     <form method="post" action="">
       {% csrf_token %}
       {{ choreForm }}
@@ -62,8 +87,5 @@
     </form>
   </div>
 </div>
-
-
-
 
 {% endblock content %}

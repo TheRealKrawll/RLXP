@@ -24,6 +24,7 @@ def profile_view(request):
 
 #dashboard page
 def dashboard_view(request):
+  student = Student.objects.get(user=request.user)
   chore = Chore(user=request.user)
   assignment = Assignment(user=request.user)
   choreForm = ChoreForm()
@@ -35,6 +36,8 @@ def dashboard_view(request):
       choreForm = ChoreForm(request.POST, instance=chore)
       if choreForm.is_valid():
         choreForm.save()
+      else:
+        print("form not valid")
     else:
       #print("recurring")
       assignmentForm = AssignmentForm(request.POST, instance=assignment)
@@ -47,6 +50,7 @@ def dashboard_view(request):
   context = {
     "loggedIn": request.user.is_authenticated,
     "username": request.user,
+    "student": student,
     "friends": {},
     "assignments": assignments,
     "chores": chores,
@@ -54,6 +58,14 @@ def dashboard_view(request):
     "assignmentForm": assignmentForm
   }
   return render(request, 'rlxp/dashboard.html', context)
+
+def deleteAssignment(request, pk):
+  Assignment.objects.filter(id=pk).delete()
+  return redirect('dashboard')
+
+def deleteChore(request, pk):
+  Chore.objects.filter(id=pk).delete()
+  return redirect('dashboard')
 
 
 
@@ -92,4 +104,5 @@ def studentform_view(request):
   }
 
   return render(request, 'rlxp/studentform.html', context)
+
 

@@ -11,4 +11,7 @@ urlpatterns = [
   path('dashboard/', views.dashboard_view, name="dashboard"),
   path('accounts/register', views.register_view, name='register'),
   path('studentform', views.studentform_view, name='studentform'),
+  path('delete-asssignment/<int:pk>/', views.deleteAssignment, name='delete-assignment'),
+  path('delete-chore/<int:pk>/', views.deleteChore, name='delete-chore'),
+  
 ]
