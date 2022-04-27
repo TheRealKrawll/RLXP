@@ -105,4 +105,12 @@ def studentform_view(request):
 
   return render(request, 'rlxp/studentform.html', context)
 
+def message_view(request):
+  context = {
+    "loggedIn": request.user.is_authenticated,
+    "username": request.user,
+    "name": request.user.username.upper()
+  }
+  return render(request, 'rlxp/message.html', context)
+
 

@@ -31,16 +31,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     #my apps
-    #'main.apps.MainConfig',
-    #'rlxp.app.MainConfig',
     'rlxp',
 ]
 
@@ -73,6 +71,14 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'myProject.wsgi.application'
+
+ASGI_APPLICATION = "myProject.asgi.application"
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer'
+    }
+}
 
 
 # Database
