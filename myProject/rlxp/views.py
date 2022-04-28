@@ -67,6 +67,16 @@ def deleteChore(request, pk):
   Chore.objects.filter(id=pk).delete()
   return redirect('dashboard')
 
+def submitAssignment(request, pk):
+  ass = Assignment.objects.filter(id=pk)
+  print(ass)
+  return redirect('dashboard')
+
+def submitChore(request, pk):
+  ch = Chore.objects.filter(id=pk)
+  print(ch)
+  return redirect('dashboard')
+
 
 
 def register_view(request):
@@ -109,7 +119,7 @@ def message_view(request):
   context = {
     "loggedIn": request.user.is_authenticated,
     "username": request.user,
-    "name": request.user.username.upper()
+    "name": request.user.username
   }
   return render(request, 'rlxp/message.html', context)
 

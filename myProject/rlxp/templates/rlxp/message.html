@@ -16,6 +16,7 @@
   <div class="cell auto"></div>
 </div>
 
+
 <script type="text/javascript">
   let url = `ws://${window.location.host}/ws/socket-server/`
 
@@ -27,8 +28,12 @@
 
     if (data.type === 'chat'){
       let messages = document.getElementById('messages')
+      let color = "red"
+      if (data.username === "{{name}}"){
+        color = "blue";
+      }
       messages.insertAdjacentHTML('beforeend', 
-      `<span style="color: red;">{{name}}</span>:
+      `<span style="color: ${color};">${data.username.toUpperCase()}</span>:
       <div class="card" style="width: 300px;">
         <p>${data.message}</p>
       </div>`)
@@ -39,8 +44,10 @@
   form.addEventListener('submit', (e)=> {
     e.preventDefault()
     let message = e.target.message.value;
+    
     chatSocket.send(JSON.stringify({
-      'message': message
+      'message': message,
+      'username': "{{name}}"
     }))
     form.reset()
   })

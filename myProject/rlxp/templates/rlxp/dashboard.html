@@ -30,7 +30,11 @@
               <div class="cell auto">{{assignment.name}}</div>
               <div class="cell auto">Difficulty: {{assignment.difficulty}}</div>
               <div class="cell auto">Due: {{assignment.due_date}}</div>
-              <div style="text-align: right;" class="cell auto">[ <a href="{% url 'delete-assignment' assignment.id %}">remove</a> ]</div>
+              <div style="text-align: right;" class="cell auto">
+                [ <a href="{% url 'submit-assignment' assignment.id %}">submit</a> ]
+                  <br>
+                [ <a href="{% url 'delete-assignment' assignment.id %}">remove</a> ]
+              </div>
             </div>
           </div>
         {% endfor %}
@@ -51,7 +55,11 @@
               <div class="cell auto">{{chore.name}}</div>
               <div class="cell auto">Difficulty: {{chore.difficulty}}</div>
               <div class="cell auto">Due: {{chore.due_date}}</div>
-              <div style="text-align: right;" class="cell auto">[ <a href="{% url 'delete-chore' chore.id %}">remove</a> ]</div>
+              <div style="text-align: right;" class="cell auto">
+                [ <a href="{% url 'submit-chore' chore.id %}">submit</a> ]
+                  <br>
+                [ <a href="{% url 'delete-chore' chore.id %}">remove</a> ]
+              </div>
             </div>
           </div>
         {% endfor %}
