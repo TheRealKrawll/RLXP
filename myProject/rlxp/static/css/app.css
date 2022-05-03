@@ -3,6 +3,12 @@
     --bg-body-color: #222;
     --bg-nav-color: #111;
     --text-color: #999;
+    --link-color: #86e7ff;
+    --head-color: palegreen;
+}
+
+.palegreen{
+    color: var(--head-color) !important;
 }
 
 h1 {
@@ -22,7 +28,7 @@ body {
 }
 
 a {
-    color: #86e7ff;
+    color: var(--link-color);
 }
 
 label {
@@ -32,7 +38,8 @@ label {
 .card{
     background: var(--bg-nav-color);
     border-radius: 10px;
-    padding: 10px;
+    border-color: var(--text-color);
+    padding: 7px;
     color: var(--text-color);
 }
 
@@ -67,12 +74,16 @@ label {
     padding:15px;
     text-align:center;
 }
-/*
-.diff{
-    color: var(--bg-nav-color);
-    background-color: var(--text-color);
+
+.dashhead{
+    color: var(--head-color);
 }
-*/
+
+.about div{
+    color: var(--text-color);
+}
+
+
 
 
 

@@ -12,9 +12,13 @@
       </div>
       <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png">
       <div class="card-section">
-        <p>Stats: </p>
-        <p>Level: 0</p>
-        <p>Experience: 110xp</p>
+        <p>Level: {{student.level}}</p>
+        <p>Experience: {{student.xp}}</p>
+        <p>Experience: {{student.xp}}</p>
+        <p>Assignments Due: {{numAssignments}}</p>
+        <p>Assignments Done: {{numCompletedAssignments}}</p>
+        <p>Chores Due: {{numChores}}</p>
+        <p>Chores Done: {{numCompletedChores}}</p>
         <p>Friends:</p>
         {% for friend in friends%}
         <p>{{ friend.name }} </p>

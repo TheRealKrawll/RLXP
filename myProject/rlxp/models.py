@@ -8,7 +8,8 @@ class Student(models.Model):
   age = models.IntegerField(null=True, blank=True)
   start_date = models.DateTimeField(auto_now_add=True)
   grade_level = models.IntegerField(blank=True, null = True, default=0)
-  xp = models.IntegerField(default=0)
+  xp = models.IntegerField(default=0, blank=True)
+  level = models.IntegerField(default=0, blank=True)
   profile_pic = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=None, null=True, blank=True)
 
   def __str__(self):
@@ -39,8 +40,8 @@ class Assignment(models.Model):
 
   name = models.CharField(max_length=50)
   difficulty = models.IntegerField(choices=Difficulty.choices)
-  start_date = models.DateTimeField(auto_now_add=True)
-  done_date = models.DateTimeField(auto_now=True)
+  start_date = models.DateField(auto_now_add=True)
+  done_date = models.DateField(null=True, blank=True)
   due_date = models.DateField(null=True, blank=True)
   assignment = models.BooleanField(default=True, null=True, blank=True)
 
@@ -61,8 +62,8 @@ class Chore(models.Model):
   name = models.CharField(max_length=50)
   difficulty = models.IntegerField(choices=Difficulty.choices)
   recurring = models.BooleanField(default=True)
-  start_date = models.DateTimeField(auto_now_add=True)
-  done_date = models.DateTimeField(auto_now=True)
+  start_date = models.DateField(auto_now_add=True)
+  done_date = models.DateField(blank=True, null=True)
   due_date = models.DateField(null=True, blank=True)
 
   def __str__(self):

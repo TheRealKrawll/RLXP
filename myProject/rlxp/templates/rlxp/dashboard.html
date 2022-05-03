@@ -8,20 +8,21 @@
   <div class="cell auto"></div>
   <div class="cell shrink">
     <div class="grid-y">
-      <span style="color: lightblue">{{student.fname}} {{student.lname}} ({{ username }})</span>
+      <span style="color: lightblue"><font size="+2">{{student.fname}} {{student.lname}} ({{ username }})</font></span>
       <div class="cell">
         <div class="card" style="width: 600px;">
-          <div class="grid-x grid-margin-x small-up-2 medium-up-4">
-            <div class="cell auto">Level</div>
-            <div class="cell auto">XP</div>
-            <div class="cell auto">Assignments: {{assignments|length}}</div>
-            <div class="cell auto">Chores: {{chores|length}}</div>
+          <div class="grid-x grid-padding-x small-up-2 medium-up-4">
+            <div class="cell auto"><span class="dashhead">Level:</span> {{student.level}}</div>
+            <div class="cell auto"><span class="dashhead">XP:</span> {{student.xp}}</div>
+            <div class="cell auto"><span class="dashhead">Assignments:</span> {{assignments|length}}</div>
+            <div class="cell auto" style="text-align: right;"><span class="dashhead">Chores:</span> {{chores|length}}</div>
           </div>
         </div>
+        <br>
       </div>
-      <span style="color: lightblue">
-        Assignments [ <a href="#" onclick="overlayAssignmentForm(); return false">add</a> ]
-      </span>
+      <div style="color: lightblue;">
+        <span><font size="+2">Assignments <font size="+1" style="vertical-align: middle">[ <a style="vertical-align: middle;" href="#" onclick="overlayAssignmentForm(); return false">add</a> ]</font> </font></span>
+      </div>
       <div class="cell">
         {% if assignments|length != 0 %}
         {% for assignment in assignments %}
@@ -29,9 +30,9 @@
             <div class="grid-x grid-padding-x">
               <div class="cell auto">{{assignment.name}}</div>
               <div class="cell auto">Difficulty: {{assignment.difficulty}}</div>
-              <div class="cell auto">Due: {{assignment.due_date}}</div>
+              <div class="cell auto">{{assignment.due_date}}</div>
               <div style="text-align: right;" class="cell auto">
-                [ <a href="{% url 'submit-assignment' assignment.id %}">submit</a> ]
+                [ <a href="{% url 'submit-assignment' assignment.id student.id %}">submit</a> ]
                   <br>
                 [ <a href="{% url 'delete-assignment' assignment.id %}">remove</a> ]
               </div>
@@ -43,9 +44,10 @@
           <p>You have no assignments.</p>
         </div>
         {% endif %}
+        <br>
       </div>
       <span style="color: lightblue">
-        Chores [ <a href="#" onclick="overlayChoreForm(); return false">add</a> ]
+        <span><font size="+2">Chores <font size="+1" style="vertical-align: middle">[ <a style="vertical-align: middle;" href="#" onclick="overlayChoreForm(); return false">add</a> ]</font> </font></span>
       </span>
       <div class="cell">
         {% if chores|length != 0 %}
@@ -56,7 +58,7 @@
               <div class="cell auto">Difficulty: {{chore.difficulty}}</div>
               <div class="cell auto">Due: {{chore.due_date}}</div>
               <div style="text-align: right;" class="cell auto">
-                [ <a href="{% url 'submit-chore' chore.id %}">submit</a> ]
+                [ <a href="{% url 'submit-chore' chore.id student.id%}">submit</a> ]
                   <br>
                 [ <a href="{% url 'delete-chore' chore.id %}">remove</a> ]
               </div>
