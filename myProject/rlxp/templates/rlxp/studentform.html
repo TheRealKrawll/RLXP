@@ -1,0 +1,19 @@
+{% extends 'rlxp/base.html' %}
+
+{% block content %}
+<br><br>
+<div class="grid-x grid-margin-x">
+  <div class="cell auto"></div>
+  <div class="cell shrink">
+    <div class="card">
+      <form method="post" action="">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="button">Submit</button>
+      </form>
+    </div>
+  </div>
+  <div class="cell auto"></div>
+</div>
+
+{% endblock  %}

@@ -1,0 +1,26 @@
+
+{% extends 'rlxp/base.html' %}
+
+{% block content %}
+<br>
+<div class="grid-x grid-margin-x">
+  <div class="cell auto"></div>
+  <div class="cell shrink">
+    <div class="card" style="width: 300px;">
+      <div class="card-divider">
+        <p>{{ username }} -- <a href="{% url 'studentform' %}">update</a></p>
+      </div>
+      <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png">
+      <div class="card-section">
+        <p>Level: {{student.level}}</p>
+        <p>Experience: {{student.xp}}</p>
+        <p>Assignments Due: {{numAssignments}}</p>
+        <p>Assignments Done: {{numCompletedAssignments}}</p>
+        <p>Chores Due: {{numChores}}</p>
+        <p>Chores Done: {{numCompletedChores}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="cell auto"></div>
+</div> <!-- End of grid-->
+{% endblock content %}

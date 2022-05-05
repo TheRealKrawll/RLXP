@@ -1,0 +1,57 @@
+{% extends 'rlxp/base.html' %}
+
+{% block content %}
+
+<h1>RLXP ChatBox</h1>
+
+<div class="grid-x grid-margin-x">
+  <div class="cell auto"></div>
+  <div class="cell shrink">
+    <span style="color: white;">Type to chat</span>
+    <form style="width: 400px;" id="form">
+      <input type="text" name="message"/>
+    </form>
+    <div id="messages"></div>
+  </div>
+  <div class="cell auto"></div>
+</div>
+
+
+<script type="text/javascript">
+  let url = `ws://${window.location.host}/ws/socket-server/`
+
+  const chatSocket = new WebSocket(url)
+
+  chatSocket.onmessage = function(e){
+    let data = JSON.parse(e.data)
+    console.log('Data:', data)
+
+    if (data.type === 'chat'){
+      let messages = document.getElementById('messages')
+      let color = "palegreen"
+      if (data.username === "{{name}}"){
+        color = "lightblue";
+      }
+      messages.insertAdjacentHTML('afterbegin', 
+      `<span style="color: ${color};">${data.username.toUpperCase()}</span>:
+      <div class="card" style="width: 400px;">
+        <p>${data.message}</p>
+      </div>`)
+      
+    }
+  }
+
+  let form = document.getElementById('form')
+  form.addEventListener('submit', (e)=> {
+    e.preventDefault()
+    let message = e.target.message.value;
+    
+    chatSocket.send(JSON.stringify({
+      'message': message,
+      'username': "{{name}}"
+    }))
+    form.reset()
+  })
+</script>
+
+{% endblock content %}

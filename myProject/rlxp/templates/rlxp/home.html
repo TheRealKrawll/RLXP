@@ -1,0 +1,13 @@
+{% extends 'rlxp/base.html' %}
+
+{% block content %}
+
+<h1>Real Life eXperience Points</h1>
+
+{% if loggedIn %}
+<p style="text-align: center; background: #333; color: #999;">Check out your <a href="{% url 'dashboard' %}">dashboard</a> or <a href="{% url 'logout' %}">logout</a>.</p>
+{% else %}
+<p style="text-align: center; background: #333; color: #999;">Welcome to RLXP. <a href="{% url 'login' %}">Login</a> or <a href="{% url 'register' %}">register</a> to get started.</p>
+{% endif %}
+
+{% endblock content %}
