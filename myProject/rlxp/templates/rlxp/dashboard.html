@@ -56,7 +56,7 @@
             <div class="grid-x grid-padding-x">
               <div class="cell auto">{{chore.name}}</div>
               <div class="cell auto">Difficulty: {{chore.difficulty}}</div>
-              <div class="cell auto">Due: {{chore.due_date}}</div>
+              <div class="cell auto">{{chore.due_date}}</div>
               <div style="text-align: right;" class="cell auto">
                 [ <a href="{% url 'submit-chore' chore.id student.id%}">submit</a> ]
                   <br>
